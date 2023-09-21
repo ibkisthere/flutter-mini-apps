@@ -30,7 +30,8 @@ class AppText extends Text {
             textAlign: TextAlign.center,
             style: TextStyle(
                 color: color,
-                fontFamily: FontFamily.merriweather,
+                // fontFamily: FontFamily.merriweather,
+                fontFamily: FontFamily.playfair,
                 fontWeight: fontWeight,
                 fontSize: fontSize
                 ));
@@ -59,7 +60,8 @@ class AppText extends Text {
             textAlign: TextAlign.left,
             style: TextStyle(
                 color: color,
-                fontFamily: FontFamily.merriweather,
+                // fontFamily: FontFamily.merriweather,
+                fontFamily: FontFamily.playfair,
                 fontWeight: fontWeight,
                 fontSize: fontSize));
               
