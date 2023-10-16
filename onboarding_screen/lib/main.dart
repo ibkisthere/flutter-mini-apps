@@ -1,25 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:onboarding_screen/onboarding_screen.dart';
+import 'onboarding_screen.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-final List<String> textOpeners = [
-  'HELLO',
-  'WELCOME',
-  'TO',
-  'SYNERGY',
-  'HELLO,\r\nWELCOME\r\nTO\r\nSYNERGY'
-];
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: OnBoardingScreen()
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: OnboardingScreen(),
     );
   }
 }

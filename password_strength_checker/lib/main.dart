@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:password_strength_checker/passwordstrengthchecker.dart';
+import 'package:password_strength_checker/utils/validators.dart';
 
 void main() {
   runApp(const App());
@@ -27,7 +28,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final _passwordController = TextEditingController();
   bool _isStrong = false;
-
+  bool _isObscure = true;
   @override
   void dispose() {
     super.dispose();
@@ -47,16 +48,22 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextField(
+              obscureText:_isObscure,
               controller: _passwordController,
               decoration: InputDecoration(
-                border: OutlineInputBorder(
-                   borderRadius: BorderRadius.circular(20.0),
-                   borderSide: BorderSide.none
-                ),
-                fillColor: Colors.grey.shade200,
-                 hintText: 'Password',
-                 filled: true
-              ),
+                  suffixIcon: IconButton(
+                      icon: Icon( _isObscure ? Icons.visibility : Icons.visibility_off, color: Colors.black,),
+                      onPressed: () {
+                        setState(() {
+                          _isObscure = !_isObscure;
+                        });
+                      }),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide.none),
+                  fillColor: Colors.grey.shade200,
+                  hintText: 'Password',
+                  filled: true),
             ),
             SizedBox(height: 16.0),
             AnimatedBuilder(
@@ -71,19 +78,18 @@ class _HomePageState extends State<HomePage> {
                         _isStrong = value;
                       });
                     },
+                    validators: validators,
                   );
-              }
-            ),
-             SizedBox(height: 24.0),
-                      Center(
-                        child: FilledButton(
-                            onPressed: _isStrong ? () {} : null,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left:16, right:16),
-                              child: Text('Submit'),
-                            )
-                          ),
-                      )
+                }),
+            SizedBox(height: 24.0),
+            Center(
+              child: FilledButton(
+                  onPressed: _isStrong ? () {} : null,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 16, right: 16),
+                    child: Text('Submit'),
+                  )),
+            )
           ],
         ),
       ),
